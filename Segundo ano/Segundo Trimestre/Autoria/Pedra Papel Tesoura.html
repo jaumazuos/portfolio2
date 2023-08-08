@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pedra, Papel e Tesoura</title>
+</head>
+<body>
+  <h1>Pedra, Papel e Tesoura</h1>
+  <p>Escolha sua jogada:</p>
+  <button id="rock">Pedra</button>
+  <button id="paper">Papel</button>
+  <button id="scissors">Tesoura</button>
+  <div id="result"></div>
+
+  <script>
+    const options = ["Pedra", "Papel", "Tesoura"];
+
+    document.getElementById("rock").addEventListener("click", () => play("Pedra"));
+    document.getElementById("paper").addEventListener("click", () => play("Papel"));
+    document.getElementById("scissors").addEventListener("click", () => play("Tesoura"));
+
+    function play(playerChoice) {
+      const computerChoice = options[Math.floor(Math.random() * options.length)];
+      const result = determineWinner(playerChoice, computerChoice);
+
+      const resultDiv = document.getElementById("result");
+      resultDiv.textContent = `Você escolheu ${playerChoice}. O computador escolheu ${computerChoice}. ${result}`;
+    }
+
+    function determineWinner(player, computer) {
+      if (player === computer) {
+        return "Empate!";
+      } else if (
+        (player === "Pedra" && computer === "Tesoura") ||
+        (player === "Papel" && computer === "Pedra") ||
+        (player === "Tesoura" && computer === "Papel")
+      ) {
+        return "Você venceu!";
+      } else {
+        return "O computador venceu!";
+      }
+    }
+  </script>
+</body>
+</html>
